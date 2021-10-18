@@ -1,4 +1,4 @@
-chart_position,chart_date,song,performer,streams,spotify_uri,song_id,region,time_on_chart,consecutive_days,previous_week,peak_position,worst_position
+chart_position,chart_date,song,performer,streams,spotify_uri,song_id,region,time_on_chart,consecutive_days,previous_day,peak_position,worst_position
 48,2020-10-02,04:30,Ufo361,1047,4SCM1b1vS70TtNQmO7Lo7B,04:30Ufo361,lu,1,,,48,48
 18,2021-05-14,1 0 0 . m i l ‘ (with Bas),J. Cole,1667,4n6NDfYake476trCjJRNl0,1 0 0 . m i l ‘ (with Bas)J. Cole,lu,1,,,18,18
 38,2019-11-02,1 Keer Voor Altijd,Mathias Vergels,1321,03SL74t9XXMAfki7bJPteK,1 Keer Voor AltijdMathias Vergels,lu,1,,,38,38
