@@ -10,9 +10,9 @@ from datetime import timedelta
 pd.options.display.max_colwidth = 150
 pd.set_option('display.max_columns', None)
 
-directory = '/Users/sm029588/OneDrive - Cerner Corporation/Spotify/Weekly Merged'
+directory = 'directory-path'
 os.chdir(directory)
-for filename in glob('*merged.csv'):
+for filename in glob('wildcard match files.extension'):
 
     #Load data in dataframe
     df = pd.read_csv(filename)
@@ -71,5 +71,5 @@ for filename in glob('*merged.csv'):
 
     #create dynamic filename
 
-    df.to_csv('/Users/sm029588/Documents/GitHub/Spotify-Top-200/Weekly/'+filename+'.csv',index=False,columns=['chart_position','chart_date','song','performer','streams','spotify_uri','song_id','region','time_on_chart','consecutive_weeks','previous_week','peak_position','worst_position'],encoding='utf-8')
+    df.to_csv('output folder path'+filename+'.csv',index=False,columns=['chart_position','chart_date','song','performer','streams','spotify_uri','song_id','region','time_on_chart','consecutive_weeks','previous_week','peak_position','worst_position'],encoding='utf-8')
     print(filename)
