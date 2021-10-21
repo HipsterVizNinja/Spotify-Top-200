@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from glob import glob
 import os
+from datetime import timedelta
 
 
 # Set settings for dataframe
@@ -9,37 +10,12 @@ import os
 pd.options.display.max_colwidth = 150
 pd.set_option('display.max_columns', None)
 
-directory = 'paste in your path'
+directory = '/Users/sm029588/OneDrive - Cerner Corporation/Spotify/Weekly Merged'
 os.chdir(directory)
-for filename in glob('wildcard filename match.extension'):
+for f in glob('/Users/sm029588/Desktop/Daily_Ready/daily_global_merged.csv'):
 
     #Load data in dataframe
-    df = pd.read_csv(filename)
-
-    #Rename Columns
-    df.rename(columns={'0': 'chart_position', '1': 'song', '2': 'performer', '3': 'streams', '4': 'spotify_url'}, inplace=True)
-
-    #Prep the data
-
-    #Create Song identifier
-    df["song_id"] = df['song']+df['performer']
-
-    #Extract Date from file path name
-    df['chart_date'] = pd.to_datetime(df['origin'].str.extract('(\d{4}-\d{2}-\d{2})')[0])
-
-    #Sort dataframe for each songid ascending by date
-    df.sort_values(['song_id','chart_date'], ascending=[True, True], inplace=True)
-    df.reset_index(drop=True, inplace=True)
-
-    #Extract Spotify URI from the URL
-    df['spotify_uri'] = df['spotify_url'].str[-22:]
-
-    #Find First Date for each songid
-    df['first_date'] = df.groupby('song_id')["chart_date"].transform('min')
-
-    #Extract Region
-    df['region'] = df['origin'].str.split('-').str[2]
-
+    df = pd.read_csv(f, parse_dates=['chart_date', 'chart_debut'])
 
     #Time on chart
     df['time_on_chart'] = df.groupby('song_id').cumcount() + 1
@@ -67,5 +43,5 @@ for filename in glob('wildcard filename match.extension'):
 
     #create dynamic filename
 
-    df.to_csv('past save to path'+filename,index=False,columns=['chart_position','chart_date','song','performer','streams','spotify_uri','song_id','region','time_on_chart','consecutive_days','previous_day','peak_position','worst_position'],encoding='utf-8')
-    print(filename)
+    #df.to_csv('/Users/sm029588/Documents/GitHub/Spotify-Top-200/Daily/global_merged.csv',index=False,columns=['chart_position','chart_date','song','performer','streams','spotify_uri','song_id','region','time_on_chart','consecutive_weeks','previous_week','peak_position','worst_position'],encoding='utf-8')
+    print(df)
