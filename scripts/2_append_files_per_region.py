@@ -1,17 +1,11 @@
 import pandas as pd
 import glob
 
-
-# Set settings for dataframe
-# pd.set_option('display.max_rows', 1000)
-pd.options.display.max_colwidth = 150
-pd.set_option('display.max_columns', None)
-
 # Open an empty dataframe
 df_all = pd.DataFrame()
 
 # Find files that match wild card by region
-for f in glob.glob("input file"):
+for f in glob.glob("input path/filename or wildcard match"):
 
     # make sure to apply correct settings (sep, parse_dates, headers, missing_values)
     df = pd.read_csv(f, parse_dates=['chart_date'])
@@ -28,5 +22,6 @@ for f in glob.glob("input file"):
     df_all['chart_debut'] = df_all.groupby('song_id')["chart_date"].transform('min')
 
     # Time to output but only certain fields
-    df_all.to_csv('output file', index=False, columns=['chart_position', 'chart_date', 'song', 'performer', 'streams', 'spotify_uri', 'song_id', 'region', 'chart_debut'])
+    df_all.to_csv('output merged filename', index=False, columns=['chart_position', 'chart_date', 'song', 'performer', 'streams', 'spotify_uri', 'song_id', 'region', 'chart_debut'])
+
     print(f)

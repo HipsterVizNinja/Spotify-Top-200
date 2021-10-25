@@ -10,9 +10,9 @@ from datetime import timedelta
 pd.options.display.max_colwidth = 150
 pd.set_option('display.max_columns', None)
 
-directory = '/Users/sm029588/OneDrive - Cerner Corporation/Spotify/Weekly Merged'
+directory = 'input directory'
 os.chdir(directory)
-for f in glob('/Users/sm029588/Desktop/Daily_Ready/daily_global_merged.csv'):
+for f in glob('filename or wildcard match'):
 
     #Load data in dataframe
     df = pd.read_csv(f, parse_dates=['chart_date', 'chart_debut'])
@@ -43,5 +43,5 @@ for f in glob('/Users/sm029588/Desktop/Daily_Ready/daily_global_merged.csv'):
 
     #create dynamic filename
 
-    #df.to_csv('/Users/sm029588/Documents/GitHub/Spotify-Top-200/Daily/global_merged.csv',index=False,columns=['chart_position','chart_date','song','performer','streams','spotify_uri','song_id','region','time_on_chart','consecutive_weeks','previous_week','peak_position','worst_position'],encoding='utf-8')
+    df.to_csv('output merged file.csv',index=False,columns=['chart_position','chart_date','song','performer','streams','spotify_uri','song_id','region','time_on_chart','consecutive_weeks','previous_week','peak_position','worst_position'],encoding='utf-8')
     print(df)
