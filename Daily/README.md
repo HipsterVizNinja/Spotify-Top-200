@@ -4,7 +4,7 @@
   - chart_date: This is the date of the chart
   - song: This is the name of the song as it shows within Spotify
   - performer: This is the performer(s) of the song
-  - song_id: This is a concatenation of the song & performer. Used as a unique id for each song
+  - song_id: This is a concatenation of the song & performer. Used as a unique id for each song. There is a ONE TO MANY relationship between song_id and spotify_uri. There can be multiple versions of of the same song, e.g. a single versus an album track.
   - streams: This is the count of streams for the song for the date. [Click here for more info about stream count from Spotify](https://artists.spotify.com/help/article/how-we-calculate-charts)
   - spotify_uri: This is the unique Spotify URI for a particular song. A single song can have multiple URIs, such as the song from album vs song from single could have the same song_id but different URIs
   - region: The region or country
