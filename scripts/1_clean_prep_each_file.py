@@ -4,11 +4,11 @@ import pandas as pd
 from datetime import timedelta
 
 
-directory = '/Users/sm029588/Google Drive/Spotify/Weekly'
-outpath = '/Users/sm029588/Google Drive/Spotify/Weekly_Clean'
+directory = '/Users/sm029588/Google Drive/Spotify/Daily'  # Change to your input folder
+outpath = '/Users/sm029588/Google Drive/Spotify/Daily_Clean'  # Change to your output folder
 os.chdir(directory)
 header_list = ['chart_position', 'song', 'performer', 'streams', 'spotify_url']
-for filename in glob('*.csv'):
+for filename in sorted(glob('*.csv')):  # What files do you want to run this code on?
     df = pd.read_csv(filename, names=header_list)
 
     # get rid of junk rows
@@ -28,9 +28,11 @@ for filename in glob('*.csv'):
     df['spotify_uri'] = df['spotify_url'].str[-22:]
 
     # Extract Date from file path name
-    # df['chart_date'] = pd.to_datetime(df['origin'].str.extract('(\d{4}-\d{2}-\d{2})')[0])
-    df['chart_dates'] = pd.to_datetime(df['origin'].str.extract('(\d{4}-\d{2}-\d{2})')[0])
-    df['chart_date'] = df['chart_dates'] + timedelta(days=6)
+    # Daily
+    df['chart_date'] = pd.to_datetime(df['origin'].str.extract('(\d{4}-\d{2}-\d{2})')[0])
+    # Weekly
+    # df['chart_dates'] = pd.to_datetime(df['origin'].str.extract('(\d{4}-\d{2}-\d{2})')[0])
+    # df['chart_date'] = df['chart_dates'] + timedelta(days=6)
 
     df.to_csv(outpath+'/'+filename, index=False, columns=['chart_position', 'song', 'performer', 'streams', 'spotify_url', 'origin', 'song_id', 'region', 'spotify_uri', 'chart_date'])
 
