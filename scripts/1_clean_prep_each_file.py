@@ -7,12 +7,10 @@ from datetime import timedelta
 directory = '/Users/sm029588/Google Drive/Spotify/Daily'  # Change to your input folder
 outpath = '/Users/sm029588/Google Drive/Spotify/Daily_Clean'  # Change to your output folder
 os.chdir(directory)
-header_list = ['chart_position', 'song', 'performer', 'streams', 'spotify_url']
-for filename in sorted(glob('*.csv')):  # What files do you want to run this code on?
-    df = pd.read_csv(filename, names=header_list)
 
-    # get rid of junk rows
-    df = df.iloc[2:]
+for filename in sorted(glob('*-weekly-*.csv')):  # What files do you want to run this code on?
+    df = pd.read_csv(filename, usecols=['rank', 'uri', 'artist_names', 'track_name', 'streams'])
+    df = df.rename(columns={'rank':'chart_position', 'uri':'spotify_url', 'artist_names':'performer', 'track_name':'song'})
 
     # add a column with a csv name
     df["origin"] = filename
