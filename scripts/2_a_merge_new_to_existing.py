@@ -5,7 +5,7 @@ import pandas as pd
 # Find files that match wild card by region
 directory = '/Users/sm029588/Google Drive/Spotify/Daily_Clean'  # change your input directory
 outpath = '/Users/sm029588/Google Drive/Spotify/Daily_Ready'  # Change your output directory
-region = 'pl'  # Change the region
+region = 'ar'  # Change the region
 time = 'daily'  # Change the timeframe
 os.chdir(directory)
 

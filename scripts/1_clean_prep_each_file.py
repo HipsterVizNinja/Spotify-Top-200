@@ -3,12 +3,16 @@ import os
 import pandas as pd
 from datetime import timedelta
 
+# Set settings for dataframe
+pd.set_option('display.max_rows', 1000)
+pd.options.display.max_colwidth = 150
+pd.set_option('display.max_columns', None)
 
-directory = '/Users/sm029588/Google Drive/Spotify/Daily'  # Change to your input folder
+directory = '/Users/sm029588/Downloads'  # Change to your input folder
 outpath = '/Users/sm029588/Google Drive/Spotify/Daily_Clean'  # Change to your output folder
 os.chdir(directory)
 
-for filename in sorted(glob('*-weekly-*.csv')):  # What files do you want to run this code on?
+for filename in sorted(glob('*-daily-*.csv')):  # What files do you want to run this code on?
     df = pd.read_csv(filename, usecols=['rank', 'uri', 'artist_names', 'track_name', 'streams'])
     df = df.rename(columns={'rank':'chart_position', 'uri':'spotify_url', 'artist_names':'performer', 'track_name':'song'})
 
